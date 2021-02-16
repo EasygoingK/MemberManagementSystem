@@ -16,7 +16,6 @@ namespace MemberManagementSystem.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public Nullable<int> IdCard { get; set; }
         public string PhoneNum { get; set; }
         public string Address { get; set; }
         public string Sex { get; set; }
@@ -26,6 +25,7 @@ namespace MemberManagementSystem.Models
         public string Birth { get; set; }
         public Nullable<int> JobID { get; set; }
         public Nullable<System.DateTime> CreateDT { get; set; }
+        public string IdCard { get; set; }
     
         public virtual MemberJob MemberJob { get; set; }
     }

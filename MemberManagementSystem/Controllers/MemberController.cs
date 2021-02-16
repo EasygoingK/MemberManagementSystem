@@ -1,4 +1,5 @@
 ﻿using MemberManagementSystem.Models;
+using MemberManagementSystem.Models.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,13 +10,87 @@ namespace MemberManagementSystem.Controllers
 {
     public class MemberController : Controller
     {
-        MemberManagementSystemEntities db = new MemberManagementSystemEntities();
+        private MemberManagementSystemEntities db = new MemberManagementSystemEntities();
 
         public ActionResult Index()
         {
-            var data = db.Member.ToList();
+            var data = db.Member;
 
             return View(data);
+        }
+
+        public ActionResult Create()
+        {
+            ViewBag.JobID = db.MemberJob.Select(s => new { s.JobID, s.JobName}).ToList();
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(CreateMember inputData)
+        {
+            if (ModelState.IsValid)
+            {
+                var data = db.Member.Create();
+
+                data.Id = inputData.Id;
+                data.Name = inputData.Name;
+                data.PhoneNum = inputData.PhoneNum;
+                data.Address = inputData.Address;
+                data.Sex = inputData.Sex;
+                data.Email = inputData.Email;
+                data.AccountNum = inputData.AccountNum;
+                data.Password = inputData.Password;
+                data.Birth = inputData.Birth;
+                data.JobID = inputData.JobID;
+                data.IdCard = inputData.IdCard;
+                data.CreateDT = DateTime.Now;
+
+                db.Member.Add(data);
+                db.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+
+            return View(inputData);
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var data = db.Member.Find(id);
+
+            return View(data);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(int id, EditMember inputData)
+        {
+            if (ModelState.IsValid)
+            {
+                var data = db.Member.Find(id);
+
+                if (data != null)
+                {
+                    data.Name = inputData.Name;
+                    data.PhoneNum = inputData.PhoneNum;
+                    data.Address = inputData.Address;
+                    data.Sex = inputData.Sex;
+                    data.Email = inputData.Email;
+                    data.AccountNum = inputData.AccountNum;
+                    data.Password = inputData.Password;
+                    data.Birth = inputData.Birth;
+                    data.JobID = inputData.JobID;
+                    data.IdCard = inputData.IdCard;
+                    data.CreateDT = DateTime.Now;
+
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index");
+                }
+            }
+
+            var dataCheck = db.Member.Find(id);
+
+            return View(dataCheck);
         }
     }
 }

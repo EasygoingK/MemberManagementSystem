@@ -4,14 +4,14 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MemberManagementSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="MemberManagementSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Member">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="20" />
-          <Property Name="IdCard" Type="int" />
+          <Property Name="IdCard" Type="varchar" MaxLength="20" />
           <Property Name="PhoneNum" Type="varchar" MaxLength="10" />
           <Property Name="Address" Type="varchar" MaxLength="50" />
           <Property Name="Sex" Type="varchar" MaxLength="4" />
@@ -26,7 +26,7 @@
           <Key>
             <PropertyRef Name="JobID" />
           </Key>
-          <Property Name="JobID" Type="int" Nullable="false" />
+          <Property Name="JobID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="JobName" Type="varchar" MaxLength="30" />
           <Property Name="JobAddress" Type="varchar" MaxLength="50" />
         </EntityType>
@@ -50,8 +50,7 @@
             <End Role="Member" EntitySet="Member" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MemberManagementSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -61,7 +60,6 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="IdCard" Type="Int32" />
           <Property Name="PhoneNum" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Sex" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
@@ -72,6 +70,7 @@
           <Property Name="JobID" Type="Int32" />
           <Property Name="CreateDT" Type="DateTime" Precision="3" />
           <NavigationProperty Name="MemberJob" Relationship="Self.FK_Member_MemberJob" FromRole="Member" ToRole="MemberJob" />
+          <Property Name="IdCard" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="MemberJob">
           <Key>
@@ -111,9 +110,9 @@
           <EntitySetMapping Name="Member">
             <EntityTypeMapping TypeName="MemberManagementSystemModel.Member">
               <MappingFragment StoreEntitySet="Member">
+                <ScalarProperty Name="IdCard" ColumnName="IdCard" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="IdCard" ColumnName="IdCard" />
                 <ScalarProperty Name="PhoneNum" ColumnName="PhoneNum" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Sex" ColumnName="Sex" />
