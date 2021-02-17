@@ -14,7 +14,7 @@ namespace MemberManagementSystem.Controllers
 
         public ActionResult Index()
         {
-            var data = db.Member;
+            var data = db.Member.ToList();
 
             return View(data);
         }
@@ -26,26 +26,11 @@ namespace MemberManagementSystem.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(CreateMember inputData)
+        public ActionResult Create(Member inputData)
         {
             if (ModelState.IsValid)
             {
-                var data = db.Member.Create();
-
-                data.Id = inputData.Id;
-                data.Name = inputData.Name;
-                data.PhoneNum = inputData.PhoneNum;
-                data.Address = inputData.Address;
-                data.Sex = inputData.Sex;
-                data.Email = inputData.Email;
-                data.AccountNum = inputData.AccountNum;
-                data.Password = inputData.Password;
-                data.Birth = inputData.Birth;
-                data.JobID = inputData.JobID;
-                data.IdCard = inputData.IdCard;
-                data.CreateDT = DateTime.Now;
-
-                db.Member.Add(data);
+                db.Member.Add(inputData);
                 db.SaveChanges();
 
                 return RedirectToAction("Index");
@@ -57,6 +42,8 @@ namespace MemberManagementSystem.Controllers
         public ActionResult Edit(int id)
         {
             var data = db.Member.Find(id);
+
+            ViewBag.JobID = db.MemberJob.Select(s => new { s.JobID, s.JobName }).ToList();
 
             return View(data);
         }
@@ -91,6 +78,36 @@ namespace MemberManagementSystem.Controllers
             var dataCheck = db.Member.Find(id);
 
             return View(dataCheck);
+        }
+
+        public ActionResult Delete(int id)
+        {
+            var data = db.Member.Find(id);
+
+            return View(data);
+        }
+
+        [HttpPost]
+        public ActionResult Delete(int? id, FormCollection form)
+        {
+            var data = db.Member.Find(id);
+
+            if (id != null)
+            {
+                db.Member.Remove(data);
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Details(int id)
+        {
+            var data = db.Member.Find(id);
+
+
+
+            return View(data);
         }
     }
 }
