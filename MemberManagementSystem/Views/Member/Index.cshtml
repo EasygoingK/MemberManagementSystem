@@ -4,11 +4,8 @@
     ViewBag.Title = "Index";
 }
 
-<h2>會員資料</h2>
 
-<p>
-    @Html.ActionLink("新增資料", "Create")
-</p>
+
 <table class="table">
     <tr>
         <th>
@@ -31,32 +28,33 @@
         </th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.AccountNum)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IdCard)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PhoneNum)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MemberJob.JobName)
-        </td>
-        <td>
-            @Html.ActionLink("修改", "Edit", new { id = item.Id }) |
-            @Html.ActionLink("詳細資料", "Details", new { id = item.Id }) |
-            @Html.ActionLink("刪除", "Delete", new { id = item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccountNum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdCard)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MemberJob.JobName)
+            </td>
+            <td>
+                @Html.ActionLink("修改", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("詳細資料", "Details", new { id = item.Id }) |
+                @Html.ActionLink("刪除", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
 </table>

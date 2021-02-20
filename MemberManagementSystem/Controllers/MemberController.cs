@@ -9,6 +9,7 @@ using System.Web.Security;
 
 namespace MemberManagementSystem.Controllers
 {
+    [Authorize]
     public class MemberController : Controller
     {
         private MemberManagementSystemEntities db = new MemberManagementSystemEntities();
@@ -28,6 +29,9 @@ namespace MemberManagementSystem.Controllers
             if (data != null)
             {
                 FormsAuthentication.SetAuthCookie(data.AccountNum, false);
+
+                Session["AccountNum"] = data.AccountNum;
+
                 return RedirectToAction("Index","Member");
             }
 
@@ -38,7 +42,9 @@ namespace MemberManagementSystem.Controllers
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
-            return View("Login");
+            Session["AccountNum"] = null;
+
+            return RedirectToAction("Login");
         }
 
         public ActionResult Index()
@@ -48,6 +54,7 @@ namespace MemberManagementSystem.Controllers
             return View(data);
         }
 
+        [AllowAnonymous]
         public ActionResult Create()
         {
             ViewBag.JobID = db.MemberJob.Select(s => new { s.JobID, s.JobName}).ToList();
@@ -55,6 +62,7 @@ namespace MemberManagementSystem.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public ActionResult Create(Member inputData)
         {
             if (ModelState.IsValid)

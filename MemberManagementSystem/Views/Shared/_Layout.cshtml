@@ -7,6 +7,7 @@
     @*<title>@ViewBag.Title - 我的 ASP.NET 應用程式</title>*@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -17,14 +18,21 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("會員管理系統", "Index", "Member", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    @*<li>@Html.ActionLink("首頁", "Index", "Home")</li>
-                    <li>@Html.ActionLink("關於", "About", "Home")</li>
-                    <li>@Html.ActionLink("連絡人", "Contact", "Home")</li>*@
-                </ul>
+                @if (Session["AccountNum"] != null)
+                {
+                        @Html.ActionLink("會員管理系統", "Index", "Member", new { area = "" }, new { @class = "navbar-brand" })
+                    <ul class="nav navbar-nav navbar-right">
+
+                        <li>
+                            <a>您好 @Html.Encode(Session["AccountNum"]) !</a>
+                        </li>
+                        <li>
+                            @Html.ActionLink("登出", "Logout", "Member", new { area = "" })
+                        </li>
+                    </ul>
+                }
             </div>
         </div>
     </div>

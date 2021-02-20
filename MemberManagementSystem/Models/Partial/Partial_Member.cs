@@ -46,6 +46,7 @@ namespace MemberManagementSystem.Models
 
             [Display(Name = "身分證字號")]
             [Onlythree]
+            [Required]
             public string IdCard { get; set; }
         }
     }
