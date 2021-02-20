@@ -157,6 +157,8 @@
     <Compile Include="Models\Partial\Partial_Member.cs" />
     <Compile Include="Models\Partial\Partial_MemberJob.cs" />
     <Compile Include="Models\ViewModel\EditMember.cs" />
+    <Compile Include="Models\ViewModel\Login.cs" />
+    <Compile Include="Models\ViewModel\OnlythreeAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -217,6 +219,7 @@
     <Content Include="Views\Member\Edit.cshtml" />
     <Content Include="Views\Member\Delete.cshtml" />
     <Content Include="Views\Member\Details.cshtml" />
+    <Content Include="Views\Member\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

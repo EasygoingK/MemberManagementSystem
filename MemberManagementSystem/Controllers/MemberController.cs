@@ -5,12 +5,41 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace MemberManagementSystem.Controllers
 {
     public class MemberController : Controller
     {
         private MemberManagementSystemEntities db = new MemberManagementSystemEntities();
+
+        [AllowAnonymous]
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult Login(Login inpuData)
+        {
+            var data = db.Member.Where(w => w.AccountNum == inpuData.AccountNum && w.Password == inpuData.Password).FirstOrDefault();
+
+            if (data != null)
+            {
+                FormsAuthentication.SetAuthCookie(data.AccountNum, false);
+                return RedirectToAction("Index","Member");
+            }
+
+            return View("Login");
+        }
+
+        [AllowAnonymous]
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return View("Login");
+        }
 
         public ActionResult Index()
         {
@@ -35,6 +64,8 @@ namespace MemberManagementSystem.Controllers
 
                 return RedirectToAction("Index");
             }
+
+            ViewBag.JobID = db.MemberJob.Select(s => new { s.JobID, s.JobName }).ToList();
 
             return View(inputData);
         }

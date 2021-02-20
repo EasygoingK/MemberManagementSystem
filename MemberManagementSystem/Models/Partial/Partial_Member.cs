@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MemberManagementSystem.Models.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -12,9 +13,11 @@ namespace MemberManagementSystem.Models
         public class Partial_MemberMedaData
         {
             [Display(Name = "姓名")]
+            [Required]
             public string Name { get; set; }
 
             [Display(Name = "電話")]
+            [Required]
             public string PhoneNum { get; set; }
 
             [Display(Name = "地址")]
@@ -25,13 +28,16 @@ namespace MemberManagementSystem.Models
 
             [Display(Name = "電子郵件")]
             [EmailAddress]
+            [Required]
             public string Email { get; set; }
 
             [Display(Name = "帳號")]
+            [Required]
             public string AccountNum { get; set; }
 
             [Display(Name = "密碼")]
             [DataType(DataType.Password)]
+            [Required]
             public string Password { get; set; }
 
             [Display(Name = "生日")]
@@ -39,6 +45,7 @@ namespace MemberManagementSystem.Models
             public string Birth { get; set; }
 
             [Display(Name = "身分證字號")]
+            [Onlythree]
             public string IdCard { get; set; }
         }
     }
