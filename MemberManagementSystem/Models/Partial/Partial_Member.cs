@@ -48,6 +48,10 @@ namespace MemberManagementSystem.Models
             [Onlythree]
             [Required]
             public string IdCard { get; set; }
+
+            public string ImgPath { get; set; }
+
+
         }
     }
 }

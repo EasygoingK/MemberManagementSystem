@@ -4,10 +4,20 @@
     ViewBag.Title = "刪除會員資料";
 }
 
+<style>
+    .img, .upFile {
+        margin-left: 100px;
+    }
+</style>
+
 <h2>刪除會員資料</h2>
 
 <div>
     <hr />
+
+    <img src="@Model.ImgPath" width="250" height="300" class="img" />
+    <input type="file" name="upFile" class="upFile" />
+
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Name)
@@ -99,7 +109,9 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">

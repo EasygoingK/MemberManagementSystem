@@ -26,6 +26,7 @@ namespace MemberManagementSystem.Models
         public Nullable<int> JobID { get; set; }
         public Nullable<System.DateTime> CreateDT { get; set; }
         public string IdCard { get; set; }
+        public string ImgPath { get; set; }
     
         public virtual MemberJob MemberJob { get; set; }
     }

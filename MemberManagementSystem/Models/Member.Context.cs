@@ -27,7 +27,5 @@ namespace MemberManagementSystem.Models
     
         public virtual DbSet<Member> Member { get; set; }
         public virtual DbSet<MemberJob> MemberJob { get; set; }
-
-        public System.Data.Entity.DbSet<MemberManagementSystem.Models.ViewModel.EditMember> EditMembers { get; set; }
     }
 }

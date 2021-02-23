@@ -34,8 +34,8 @@ namespace MemberManagementSystem.Models.ViewModel
         public string AccountNum { get; set; }
 
         [Display(Name="密碼")]
-        [Required]
         [DataType(DataType.Password)]
+        [Required]
         public string Password { get; set; }
 
         [Display(Name="生日")]
@@ -50,5 +50,8 @@ namespace MemberManagementSystem.Models.ViewModel
         [Display(Name="身分證字號")]
         [Required]
         public string IdCard { get; set; }
+
+        public string ImgPath { get; set; }
+
     }
 }

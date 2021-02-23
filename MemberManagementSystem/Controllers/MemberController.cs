@@ -2,6 +2,7 @@
 using MemberManagementSystem.Models.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -63,10 +64,20 @@ namespace MemberManagementSystem.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public ActionResult Create(Member inputData)
+        public ActionResult Create(HttpPostedFileBase upFile, Member inputData)
         {
             if (ModelState.IsValid)
             {
+                if (upFile != null)
+                {
+                    string fileName = Path.Combine(Server.MapPath("~/img/"), upFile.FileName);
+                    upFile.SaveAs(fileName);
+
+                    string filePath = "/img/";
+                    inputData.ImgPath = filePath + upFile.FileName.Trim();
+                }
+
+                inputData.CreateDT = DateTime.Now;
                 db.Member.Add(inputData);
                 db.SaveChanges();
 
@@ -88,11 +99,21 @@ namespace MemberManagementSystem.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(int id, EditMember inputData)
+        public ActionResult Edit(int id, HttpPostedFileBase upFile, EditMember inputData)
         {
             if (ModelState.IsValid)
             {
                 var data = db.Member.Find(id);
+
+                if (upFile != null)
+                {
+                    string fileName = Path.Combine(Server.MapPath("~/img/"), upFile.FileName);
+                    upFile.SaveAs(fileName);
+
+                    string filePath = "/img/";
+                    inputData.ImgPath = filePath + upFile.FileName.Trim();
+                    data.ImgPath = inputData.ImgPath;
+                }
 
                 if (data != null)
                 {

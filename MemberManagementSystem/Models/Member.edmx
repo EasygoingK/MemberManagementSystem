@@ -21,6 +21,7 @@
           <Property Name="Birth" Type="varchar" MaxLength="20" />
           <Property Name="JobID" Type="int" />
           <Property Name="CreateDT" Type="datetime" />
+          <Property Name="ImgPath" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="MemberJob">
           <Key>
@@ -71,6 +72,7 @@
           <Property Name="CreateDT" Type="DateTime" Precision="3" />
           <NavigationProperty Name="MemberJob" Relationship="Self.FK_Member_MemberJob" FromRole="Member" ToRole="MemberJob" />
           <Property Name="IdCard" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ImgPath" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="MemberJob">
           <Key>
@@ -110,6 +112,7 @@
           <EntitySetMapping Name="Member">
             <EntityTypeMapping TypeName="MemberManagementSystemModel.Member">
               <MappingFragment StoreEntitySet="Member">
+                <ScalarProperty Name="ImgPath" ColumnName="ImgPath" />
                 <ScalarProperty Name="IdCard" ColumnName="IdCard" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />

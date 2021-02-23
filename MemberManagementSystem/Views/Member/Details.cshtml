@@ -6,8 +6,16 @@
 
 <h2>會員詳細資料</h2>
 
+
+<style>
+    .img {
+        margin-left: 100px;
+    }
+</style>
+
 <div>
     <hr />
+    <img src="@Model.ImgPath" width="250" height="300" class="img" />
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Name)
@@ -96,7 +104,6 @@
         <dd>
             @Html.DisplayFor(model => model.MemberJob.JobName)
         </dd>
-
     </dl>
 </div>
 <p>
