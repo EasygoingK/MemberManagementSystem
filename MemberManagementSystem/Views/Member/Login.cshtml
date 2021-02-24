@@ -1,7 +1,7 @@
 ﻿@model MemberManagementSystem.Models.ViewModel.Login
 
 @{
-    ViewBag.Title = "會員登入";
+    ViewBag.Title = "使用者登入";
 }
 
 
@@ -9,7 +9,7 @@
 @Scripts.Render("~/bundles/modernizr")
 
 
-<h2 class="col-md-offset-2 col-md-10">會員登入</h2>
+<h2 class="col-md-offset-2 col-md-10">使用者登入</h2>
 
 <div>
     @using (Html.BeginForm())
@@ -37,7 +37,7 @@
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <input type="submit" value="登入" class="btn  btn-primary" />
-                        @Html.ActionLink("新增會員", "Create")
+                        @Html.ActionLink("新增使用者", "Create")
                 </div>
             </div>
         </div>

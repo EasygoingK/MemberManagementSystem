@@ -22,7 +22,8 @@
             <div class="navbar-collapse collapse">
                 @if (Session["AccountNum"] != null)
                 {
-                        @Html.ActionLink("會員管理系統", "Index", "Member", new { area = "" }, new { @class = "navbar-brand" })
+                        @Html.ActionLink("使用者管理系統", "Index", "Member", new { area = "" }, new { @class = "navbar-brand" })
+                        @Html.ActionLink("報告分派", "Index", "Assign", new { area = "" }, new { @class = "navbar-brand" })
                     <ul class="nav navbar-nav navbar-right">
 
                         <li>
