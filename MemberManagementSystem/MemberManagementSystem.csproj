@@ -165,6 +165,8 @@
     <Compile Include="Models\ViewModel\EditMember.cs" />
     <Compile Include="Models\ViewModel\Login.cs" />
     <Compile Include="Models\ViewModel\OnlythreeAttribute.cs" />
+    <Compile Include="Models\ViewModel\Patientlist.cs" />
+    <Compile Include="Models\ViewModel\Doclist.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
